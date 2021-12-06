@@ -73,7 +73,8 @@ function Demo() {
                     variant={theme.colorScheme === 'dark' ? 'filled' : 'default'}
                     styles={{
                       input: {
-                        backgroundColor: theme.colorScheme === 'dark' && theme.colors.dark[7],
+                        backgroundColor:
+                          theme.colorScheme === 'dark' ? theme.colors.dark[7] : undefined,
                       },
                     }}
                   />

@@ -20,7 +20,7 @@ export default function NotificationContainer({
   const hideTimeout = useRef<number>();
 
   const handleHide = () => {
-    onHide(notification.id);
+    onHide(notification.id as string);
     window.clearTimeout(hideTimeout.current);
   };
 

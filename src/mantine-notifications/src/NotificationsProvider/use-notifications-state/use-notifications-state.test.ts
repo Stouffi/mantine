@@ -1,8 +1,7 @@
 import { act, renderHook } from '@testing-library/react-hooks';
-import { NotificationProps } from '../../types';
 import useNotificationsState from './use-notifications-state';
 
-const TEST_NOTIFICATION: NotificationProps = {
+const TEST_NOTIFICATION = {
   id: 'test',
   message: 'test-notification',
 };
@@ -19,7 +18,7 @@ describe('@mantine/notifications/use-notifications-state', () => {
   });
 
   it('returns notification id with showNotification handler', () => {
-    let id = null;
+    let id: string | null = null;
     const hook = renderHook(() => useNotificationsState({ limit: 3 }));
     act(() => {
       id = hook.result.current.showNotification(TEST_NOTIFICATION);
@@ -27,10 +26,10 @@ describe('@mantine/notifications/use-notifications-state', () => {
     expect(id).toBe(TEST_NOTIFICATION.id);
 
     act(() => {
-      id = hook.result.current.showNotification({ ...TEST_NOTIFICATION, id: null });
+      id = hook.result.current.showNotification({ ...TEST_NOTIFICATION, id: undefined });
     });
 
-    expect(id).not.toBe(null);
+    expect(id).not.toBe(undefined);
   });
 
   it('does not allow to add multiple notifications with same id', () => {
