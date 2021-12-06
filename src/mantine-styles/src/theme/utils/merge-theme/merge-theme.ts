@@ -18,7 +18,7 @@ export function mergeTheme(
               // eslint-disable-next-line no-param-reassign
               headingsAcc[h] = {
                 ...currentTheme.headings.sizes[h],
-                ...themeOverride.headings.sizes[h],
+                ...(themeOverride as any).headings.sizes[h],
               };
               return headingsAcc;
             }, {} as MantineThemeBase['headings']['sizes'])

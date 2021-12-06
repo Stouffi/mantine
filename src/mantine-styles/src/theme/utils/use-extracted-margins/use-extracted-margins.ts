@@ -22,13 +22,13 @@ export function useExtractedMargins({ others, style }: UseExtractedMargins) {
   const theme = useMantineTheme();
   const mergedStyles: React.CSSProperties = { ...style };
 
-  if (isValidMargin(others.my)) {
+  if (others.my && isValidMargin(others.my)) {
     const margin = theme.fn.size({ size: others.my, sizes: theme.spacing });
     mergedStyles.marginTop = margin;
     mergedStyles.marginBottom = margin;
   }
 
-  if (isValidMargin(others.mx)) {
+  if (others.mx && isValidMargin(others.mx)) {
     const margin = theme.fn.size({ size: others.mx, sizes: theme.spacing });
     mergedStyles.marginLeft = margin;
     mergedStyles.marginRight = margin;

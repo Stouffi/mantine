@@ -15,7 +15,7 @@ type ProviderStyles = Record<
 interface MantineThemeContextType {
   theme: MantineTheme;
   styles: ProviderStyles;
-  emotionOptions: EmotionCacheOptions;
+  emotionOptions: EmotionCacheOptions | undefined;
 }
 
 const MantineThemeContext = createContext<MantineThemeContextType>({

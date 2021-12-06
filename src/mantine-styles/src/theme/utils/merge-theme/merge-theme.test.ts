@@ -3,13 +3,13 @@ import { mergeTheme } from './merge-theme';
 
 const getThemeBase = () => {
   const themeBase = { ...DEFAULT_THEME };
-  delete themeBase.fn;
+  delete (themeBase as any).fn;
   return themeBase;
 };
 
 const getMergedThemeBase = (themeBase: any, override: any) => {
   const result = mergeTheme(themeBase, override);
-  delete result.fn;
+  delete (result as any).fn;
   return result;
 };
 

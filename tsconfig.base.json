@@ -18,6 +18,8 @@
     "skipLibCheck": true,
     "noEmitOnError": true,
     "allowJs": true,
-    "baseUrl": "."
+    "baseUrl": ".",
+    "strict": true,
+    "noImplicitAny": false
   }
 }

@@ -9,7 +9,7 @@ export function itSupportsStylesApi(
   variant?: string
 ) {
   it(`uses styles api${variant ? `: ${variant}` : ''}`, () => {
-    const classNames = {};
+    const classNames: Record<string, string> = {};
 
     styles.forEach((part) => {
       classNames[part] = `test-${part}`;

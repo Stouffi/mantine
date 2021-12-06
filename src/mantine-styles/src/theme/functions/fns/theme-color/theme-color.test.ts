@@ -7,7 +7,7 @@ describe('@mantine/styles/theme-color', () => {
   });
 
   it('returns primary color shade if color was not provided', () => {
-    expect(themeColor(DEFAULT_THEME)(null, 5)).toBe(
+    expect(themeColor(DEFAULT_THEME)(undefined, 5)).toBe(
       DEFAULT_THEME.colors[DEFAULT_THEME.primaryColor][5]
     );
   });

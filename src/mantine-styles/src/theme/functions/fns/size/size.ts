@@ -1,5 +1,5 @@
 interface GetSize {
-  size: string | number;
+  size: string | number | undefined;
   sizes: Record<string, any>;
 }
 
@@ -8,5 +8,5 @@ export function size(props: GetSize) {
     return props.size;
   }
 
-  return props.sizes[props.size] || props.size || props.sizes.md;
+  return props.size ? props.sizes[props.size] || props.size : props.sizes.md;
 }

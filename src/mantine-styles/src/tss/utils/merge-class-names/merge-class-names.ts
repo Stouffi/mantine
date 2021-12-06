@@ -1,8 +1,8 @@
 export function mergeClassNames<T extends Record<string, string>>(
   cx: (..._classNames: any) => string,
   classes: T,
-  classNames: Partial<T>,
-  name: string
+  classNames: Partial<T> | undefined,
+  name: string | undefined
 ) {
   return Object.keys(classes).reduce((acc, className) => {
     acc[className] = cx(

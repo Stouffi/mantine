@@ -16,7 +16,7 @@ export const { getCache } = (() => {
   return { getCache: _getCache };
 })();
 
-const context = createContext<EmotionCache>(undefined);
+const context = createContext<EmotionCache | undefined>(undefined);
 
 export function useCache() {
   const options = useMantineEmotionOptions();

@@ -24,6 +24,6 @@ describe('@mantine/styles/size', () => {
   });
 
   it('returns default size if size was not given', () => {
-    expect(size({ size: null, sizes })).toBe(sizes.md);
+    expect(size({ size: undefined, sizes })).toBe(sizes.md);
   });
 });

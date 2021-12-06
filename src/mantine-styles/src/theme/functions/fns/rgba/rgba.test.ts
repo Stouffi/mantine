@@ -17,7 +17,6 @@ describe('@mantine/styles/rgba', () => {
   });
 
   it('returns empty string for incorrect values', () => {
-    expect(rgba(null, 0.74)).toBe('rgba(0, 0, 0, 1)');
     expect(rgba('#000000', -12)).toBe('rgba(0, 0, 0, 1)');
     expect(rgba('#00000', 1)).toBe('rgba(0, 0, 0, 1)');
     expect(rgba('#000', 1)).toBe('rgba(0, 0, 0, 1)');

@@ -30,7 +30,7 @@ export function createStyles<Key extends string = string, Params = void>(
 
   function useStyles(params: Params, options?: UseStylesOptions<Key>) {
     const theme = useMantineTheme();
-    const themeStyles = useMantineThemeStyles()[options?.name];
+    const themeStyles = options?.name ? useMantineThemeStyles()[options?.name] : null;
 
     const { css, cx } = useCss();
 

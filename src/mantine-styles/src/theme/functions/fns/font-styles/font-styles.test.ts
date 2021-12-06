@@ -7,6 +7,6 @@ describe('@mantine/tss/get-font-styles', () => {
   });
 
   it('sets font-family to sans-serif if theme has no font-family', () => {
-    expect(fontStyles({ ...DEFAULT_THEME, fontFamily: null })().fontFamily).toBe('sans-serif');
+    expect(fontStyles({ ...DEFAULT_THEME, fontFamily: undefined })().fontFamily).toBe('sans-serif');
   });
 });
