@@ -32,13 +32,13 @@ export function ConfirmModal({
   const handleCancel = (event: React.MouseEvent<HTMLButtonElement>) => {
     typeof cancelProps?.onClick === 'function' && cancelProps?.onClick(event);
     typeof onCancel === 'function' && onCancel();
-    closeOnCancel && ctx?.closeModal(id);
+    closeOnCancel && ctx?.closeModal(id as string);
   };
 
   const handleConfirm = (event: React.MouseEvent<HTMLButtonElement>) => {
     typeof confirmProps?.onClick === 'function' && confirmProps?.onClick(event);
     typeof onConfirm === 'function' && onConfirm();
-    closeOnConfirm && ctx?.closeModal(id);
+    closeOnConfirm && ctx?.closeModal(id as string);
   };
 
   return (
@@ -47,11 +47,11 @@ export function ConfirmModal({
 
       <Group position="right" {...groupProps}>
         <Button variant="default" {...cancelProps} onClick={handleCancel}>
-          {cancelProps?.children || labels.cancel}
+          {cancelProps?.children || labels?.cancel}
         </Button>
 
         <Button {...confirmProps} onClick={handleConfirm}>
-          {confirmProps?.children || labels.confirm}
+          {confirmProps?.children || labels?.confirm}
         </Button>
       </Group>
     </>

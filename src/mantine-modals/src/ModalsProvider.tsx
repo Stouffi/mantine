@@ -30,7 +30,7 @@ export interface ModalsProviderProps {
   labels?: ConfirmLabels;
 }
 
-function extractConfirmModalProps(props: OpenConfirmModal) {
+function extractConfirmModalProps(props: OpenConfirmModal | null) {
   if (!props) {
     return { confirmProps: {}, modalProps: {} };
   }
@@ -55,7 +55,7 @@ function extractConfirmModalProps(props: OpenConfirmModal) {
 export function ModalsProvider({ children, modalProps, labels, modals }: ModalsProviderProps) {
   const [state, handlers] = useListState<ModalState>([]);
   const [currentModal, setCurrentModal] = useState<ModalState>({
-    id: null,
+    id: '',
     props: null,
     type: 'content',
   });
@@ -92,7 +92,8 @@ export function ModalsProvider({ children, modalProps, labels, modals }: ModalsP
     }
   };
 
-  const ContextModal = currentModal?.type === 'context' ? modals[currentModal?.ctx] : () => null;
+  const ContextModal =
+    currentModal?.type === 'context' ? modals?.[currentModal?.ctx] || (() => null) : () => null;
 
   const ctx = {
     modals: state,
@@ -104,13 +105,13 @@ export function ModalsProvider({ children, modalProps, labels, modals }: ModalsP
   };
 
   const content =
-    currentModal?.type === 'context' ? (
+    currentModal && currentModal?.type === 'context' ? (
       <ContextModal context={ctx} id={currentModal?.id} />
     ) : currentModal?.type === 'confirm' ? (
       <ConfirmModal
         {...currentModal.props}
         id={currentModal.id}
-        labels={currentModal.props.labels || labels}
+        labels={currentModal ? currentModal.props?.labels || labels : labels}
       />
     ) : (
       currentModal?.props?.children
@@ -122,8 +123,8 @@ export function ModalsProvider({ children, modalProps, labels, modals }: ModalsP
         opened={state.length > 0}
         onClose={() => closeModal(currentModal?.id)}
         {...modalProps}
-        {...(currentModal?.type === 'confirm'
-          ? extractConfirmModalProps(currentModal?.props)
+        {...(currentModal && currentModal?.type === 'confirm'
+          ? extractConfirmModalProps(currentModal.props)
           : currentModal?.props)}
       >
         {content}
