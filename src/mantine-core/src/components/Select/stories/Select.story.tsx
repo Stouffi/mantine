@@ -172,19 +172,16 @@ storiesOf('@mantine/core/Select/stories', module)
       {content}
     </div>
   ))
-  .add('Uncontrolled with name', () => (
-    <div style={{ padding: 40 }}>
+  .add('Popper flip (no direction switch)', () => (
+    <div style={{ maxWidth: 600, margin: 'auto' }}>
+      {content}
       <Select
-        name="test"
-        label="Your favorite framework/library"
-        placeholder="Pick one"
-        data={[
-          { value: 'react', label: 'React' },
-          { value: 'ng', label: 'Angular' },
-          { value: 'svelte', label: 'Svelte' },
-          { value: 'vue', label: 'Vue' },
-        ]}
+        label="Dropdown flip"
+        data={data}
+        placeholder="Select items"
+        switchDirectionOnFlip={false}
       />
+      {content}
     </div>
   ))
   .add('Searchable value clear', () => (
@@ -208,6 +205,21 @@ storiesOf('@mantine/core/Select/stories', module)
         searchable
         clearable
         mt="xl"
+        data={[
+          { value: 'react', label: 'React' },
+          { value: 'ng', label: 'Angular' },
+          { value: 'svelte', label: 'Svelte' },
+          { value: 'vue', label: 'Vue' },
+        ]}
+      />
+    </div>
+  ))
+  .add('Uncontrolled with name', () => (
+    <div style={{ padding: 40 }}>
+      <Select
+        name="test"
+        label="Your favorite framework/library"
+        placeholder="Pick one"
         data={[
           { value: 'react', label: 'React' },
           { value: 'ng', label: 'Angular' },
