@@ -12,6 +12,7 @@ export class ImageUploader {
     this.quill = quill;
     this.options = options;
     this.range = null;
+    this.fileHolder = document.createElement('input');
 
     const toolbar = this.quill.getModule('toolbar');
     toolbar.addHandler('image', this.selectLocalImage.bind(this));
@@ -104,7 +105,7 @@ export class ImageUploader {
     }
   }
 
-  readAndUploadFile(file: File) {
+  readAndUploadFile(file: File | null) {
     let isUploadReject = false;
 
     const fileReader = new FileReader();
@@ -122,21 +123,21 @@ export class ImageUploader {
 
     if (file) {
       fileReader.readAsDataURL(file);
-    }
 
-    this.options.upload(file).then(
-      (imageUrl) => {
-        this.insertToEditor(imageUrl);
-      },
-      () => {
-        isUploadReject = true;
-        this.removeBase64Image();
-      }
-    );
+      this.options.upload(file).then(
+        (imageUrl) => {
+          this.insertToEditor(imageUrl);
+        },
+        () => {
+          isUploadReject = true;
+          this.removeBase64Image();
+        }
+      );
+    }
   }
 
   fileChanged() {
-    const file = this.fileHolder.files[0];
+    const file = this.fileHolder.files ? this.fileHolder.files[0] : null;
     this.readAndUploadFile(file);
   }
 

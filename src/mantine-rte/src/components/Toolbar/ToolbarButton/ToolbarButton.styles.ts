@@ -1,7 +1,7 @@
 import { createStyles, getSharedColorScheme } from '@mantine/core';
 
 interface ToolbarButtonStyles {
-  noActive: boolean;
+  noActive?: boolean;
 }
 
 export default createStyles((theme, { noActive }: ToolbarButtonStyles) => {

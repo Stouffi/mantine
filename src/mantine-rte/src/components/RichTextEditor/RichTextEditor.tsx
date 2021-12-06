@@ -79,7 +79,7 @@ export const RichTextEditor = forwardRef<Editor, RichTextEditorProps>(
     ref
   ) => {
     const uuid = useUuid(id);
-    const editorRef = useRef<Editor>();
+    const editorRef = useRef<Editor | null>(null);
     const { classes, cx } = useStyles(
       { saveLabel: labels.save, editLabel: labels.edit, removeLabel: labels.remove },
       { sx, classNames, styles, name: 'RichTextEditor' }
@@ -119,7 +119,7 @@ export const RichTextEditor = forwardRef<Editor, RichTextEditorProps>(
           modules={modules}
           value={value}
           onChange={onChange}
-          ref={mergeRefs(editorRef, ref)}
+          ref={mergeRefs<Editor>(editorRef, ref)}
         />
       </div>
     );
